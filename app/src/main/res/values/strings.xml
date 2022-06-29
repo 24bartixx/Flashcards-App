@@ -1,0 +1,17 @@
+<resources>
+
+    <string name="app_name">Flashcards</string>
+
+    <string name="study_button_text">Study</string>
+    <string name="create_button_text">Create flashcards</string>
+    <string name="search_button_text">Browse</string>
+
+    <string name="choose_flashcards_name">Choose your flashcard collection name</string>
+    <string name="input_text_hint">name</string>
+    <string name="add_flashcards_button_text">Add flashcards</string>
+
+    <string name="term_text_hint">Term</string>
+    <string name="definition_text_hint">Definition</string>
+    <string name="add_new_item">Add a new flashcard</string>
+
+</resources>

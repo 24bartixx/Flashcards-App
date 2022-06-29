@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainScreenFragment">
+
+    <fragment
+        android:id="@+id/mainScreenFragment"
+        android:name="com.example.flashcards.fragments.MainScreenFragment"
+        android:label="fragment_main_screen"
+        tools:layout="@layout/fragment_main_screen" >
+        <action
+            android:id="@+id/action_mainScreenFragment_to_createNameFragment"
+            app:destination="@id/createNameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createNameFragment"
+        android:name="com.example.flashcards.fragments.CreateNameFragment"
+        android:label="fragment_create_name"
+        tools:layout="@layout/fragment_create_name" >
+        <action
+            android:id="@+id/action_createNameFragment_to_addFlashcardsFragment"
+            app:destination="@id/addFlashcardsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addFlashcardsFragment"
+        android:name="com.example.flashcards.fragments.AddFlashcardsFragment"
+        android:label="fragment_add_flashcards"
+        tools:layout="@layout/fragment_add_flashcards" />
+</navigation>
