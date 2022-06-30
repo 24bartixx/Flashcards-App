@@ -6,10 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.coroutineScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.flashcards.adapters.AddFragmentsAdapter
 import com.example.flashcards.data.CreateFlashcardsDatasourceList
 import com.example.flashcards.databinding.FragmentAddFlashcardsBinding
 import com.example.flashcards.viewmodels.AddFlashcardsViewModel
+import kotlinx.coroutines.launch
 
 
 class AddFlashcardsFragment : Fragment() {
@@ -18,6 +22,8 @@ class AddFlashcardsFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val addFlashcardsViewModel: AddFlashcardsViewModel by viewModels()
+
+    lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,10 +39,16 @@ class AddFlashcardsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val flashcardsList = CreateFlashcardsDatasourceList.flashcardsList
-
         addFlashcardsViewModel.createFlashcardList()
-        binding.addFlashcardsRecyclerView.adapter = AddFragmentsAdapter(requireContext(), addFlashcardsViewModel.flashcards.value!!.toList())
-        binding.addFlashcardsRecyclerView.setHasFixedSize(true)
+
+        recyclerView = binding.addFlashcardsRecyclerView
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        val adapter = AddFragmentsAdapter()
+        recyclerView.adapter = adapter
+        lifecycle.coroutineScope.launch {
+            adapter.submitList(addFlashcardsViewModel.flashcards.value)
+        }
 
         binding.addFloatingActionButton.setOnClickListener {
             addFlashcardsViewModel.addFlashCard()
