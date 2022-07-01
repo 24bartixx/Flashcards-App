@@ -2,16 +2,24 @@
 
     <string name="app_name">Flashcards</string>
 
+    <!-- Main screen -->
     <string name="study_button_text">Study</string>
     <string name="create_button_text">Create flashcards</string>
     <string name="search_button_text">Browse</string>
 
+    <!-- Create name fragment-->
     <string name="choose_flashcards_name">Choose your flashcard collection name</string>
     <string name="input_text_hint">name</string>
-    <string name="add_flashcards_button_text">Add flashcards</string>
+    <string name="create_collection_button_text">Create collection</string>
 
+    <!-- Flashcards List -->
+    <string name="add_new_item">Add a new flashcard</string>
+
+    <!-- Create flashcard fragment -->
+    <string name="create_flashcard_button_text">Create flashcard</string>
     <string name="term_text_hint">Term</string>
     <string name="definition_text_hint">Definition</string>
-    <string name="add_new_item">Add a new flashcard</string>
+    <string name="enter_flashcard_term_helper_text">Enter the term</string>
+    <string name="enter_flashcard_definition_helper_text">Enter the definition</string>
 
 </resources>

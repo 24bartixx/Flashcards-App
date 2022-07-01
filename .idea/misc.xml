@@ -3,14 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android/Flashcards/app/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.117" />
         <entry key="..\:/Android/Flashcards/app/app/src/main/res/drawable/button_roundstyle.xml" value="0.121" />
+        <entry key="..\:/Android/Flashcards/app/app/src/main/res/drawable/ic_arrow_down.xml" value="0.117" />
         <entry key="..\:/Android/Flashcards/app/app/src/main/res/drawable/ic_create.xml" value="0.1165" />
         <entry key="..\:/Android/Flashcards/app/app/src/main/res/drawable/ic_delete.xml" value="0.1565" />
         <entry key="..\:/Android/Flashcards/app/app/src/main/res/drawable/ic_flashcard_name.xml" value="0.1165" />
+        <entry key="..\:/Android/Flashcards/app/app/src/main/res/drawable/ic_launcher_background.xml" value="0.117" />
+        <entry key="..\:/Android/Flashcards/app/app/src/main/res/drawable/ic_search.xml" value="0.117" />
         <entry key="..\:/Android/Flashcards/app/app/src/main/res/drawable/ic_study.xml" value="0.2425" />
         <entry key="..\:/Android/Flashcards/app/app/src/main/res/layout/activity_main.xml" value="0.1546875" />
         <entry key="..\:/Android/Flashcards/app/app/src/main/res/layout/add_flashcards_item.xml" value="0.264" />
         <entry key="..\:/Android/Flashcards/app/app/src/main/res/layout/fragment_add_flashcards.xml" value="0.14791666666666667" />
+        <entry key="..\:/Android/Flashcards/app/app/src/main/res/layout/fragment_create_flashcard.xml" value="0.264" />
         <entry key="..\:/Android/Flashcards/app/app/src/main/res/layout/fragment_create_name.xml" value="0.25" />
         <entry key="..\:/Android/Flashcards/app/app/src/main/res/layout/fragment_main_screen.xml" value="0.22826086956521738" />
       </map>

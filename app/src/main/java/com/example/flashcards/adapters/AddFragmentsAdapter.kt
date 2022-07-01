@@ -8,12 +8,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.flashcards.databinding.AddFlashcardsItemBinding
 import com.example.flashcards.model.Flashcard
 
-class AddFragmentsAdapter: ListAdapter<Flashcard, AddFragmentsAdapter.AddFragmentsViewHolder>(DiffCallback) {
+class AddFragmentsAdapter(private val deleteFlashcard: (Flashcard) -> Unit): ListAdapter<Flashcard, AddFragmentsAdapter.AddFragmentsViewHolder>(DiffCallback) {
 
     class AddFragmentsViewHolder(private var binding: AddFlashcardsItemBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(flashcard: Flashcard) {
-            binding.flashcardInputTermEditText.setText(flashcard.term)
-            binding.flashcardInputDefinitionEditText.setText(flashcard.definition)
+        fun bind(flashcard: Flashcard, delete: (Flashcard) -> Unit){
+            binding.term.text = flashcard.term
+            binding.definition.text = flashcard.definition
+            binding.deleteButton.setOnClickListener {
+                delete(flashcard)
+            }
         }
     }
 
@@ -24,7 +27,15 @@ class AddFragmentsAdapter: ListAdapter<Flashcard, AddFragmentsAdapter.AddFragmen
     }
 
     override fun onBindViewHolder(holder: AddFragmentsViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), deleteFlashcard)
+    }
+
+    fun modifyFlashcard(){
+
+    }
+
+    fun deleteFlashcard(){
+
     }
 
     companion object {

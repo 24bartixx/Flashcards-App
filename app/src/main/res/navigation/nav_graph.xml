@@ -27,5 +27,18 @@
         android:id="@+id/addFlashcardsFragment"
         android:name="com.example.flashcards.fragments.AddFlashcardsFragment"
         android:label="fragment_add_flashcards"
-        tools:layout="@layout/fragment_add_flashcards" />
+        tools:layout="@layout/fragment_add_flashcards" >
+        <action
+            android:id="@+id/action_addFlashcardsFragment_to_createFlashcardFragment"
+            app:destination="@id/createFlashcardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createFlashcardFragment"
+        android:name="com.example.flashcards.fragments.CreateFlashcardFragment"
+        android:label="fragment_create_flashcard"
+        tools:layout="@layout/fragment_create_flashcard" >
+        <action
+            android:id="@+id/action_createFlashcardFragment_to_addFlashcardsFragment"
+            app:destination="@id/addFlashcardsFragment" />
+    </fragment>
 </navigation>

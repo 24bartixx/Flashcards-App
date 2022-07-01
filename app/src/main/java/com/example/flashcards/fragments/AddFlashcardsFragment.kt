@@ -5,15 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.coroutineScope
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.flashcards.adapters.AddFragmentsAdapter
 import com.example.flashcards.data.CreateFlashcardsDatasourceList
 import com.example.flashcards.databinding.FragmentAddFlashcardsBinding
 import com.example.flashcards.viewmodels.AddFlashcardsViewModel
-import kotlinx.coroutines.launch
 
 
 class AddFlashcardsFragment : Fragment() {
@@ -21,7 +20,7 @@ class AddFlashcardsFragment : Fragment() {
     private var _binding: FragmentAddFlashcardsBinding? = null
     private val binding get() = _binding!!
 
-    private val addFlashcardsViewModel: AddFlashcardsViewModel by viewModels()
+    private val addFlashcardsViewModel: AddFlashcardsViewModel by activityViewModels()
 
     lateinit var recyclerView: RecyclerView
 
@@ -39,19 +38,35 @@ class AddFlashcardsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val flashcardsList = CreateFlashcardsDatasourceList.flashcardsList
-        addFlashcardsViewModel.createFlashcardList()
+
+        /**
+        Log.d("Dupa", addFlashcardsViewModel.getFlashcardList().size.toString())
+        Log.d("Dupa", addFlashcardsViewModel.getFlashcardList()[0].term.toString())
+        Log.d("Dupa", addFlashcardsViewModel.getFlashcardList()[0].definition.toString())
+        */
 
         recyclerView = binding.addFlashcardsRecyclerView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        val adapter = AddFragmentsAdapter()
+        val adapter = AddFragmentsAdapter {
+            addFlashcardsViewModel.removeFlashcard(it.id)
+        }
         recyclerView.adapter = adapter
+
+        addFlashcardsViewModel.flashcards.observe(this.viewLifecycleOwner) {
+            it.let {
+                adapter.submitList(addFlashcardsViewModel.getFlashcardList())
+            }
+        }
+
+        /**
         lifecycle.coroutineScope.launch {
             adapter.submitList(addFlashcardsViewModel.flashcards.value)
         }
+        */
 
         binding.addFloatingActionButton.setOnClickListener {
-            addFlashcardsViewModel.addFlashCard()
+            goToNextScreen()
         }
 
     }
@@ -60,6 +75,11 @@ class AddFlashcardsFragment : Fragment() {
         super.onDestroy()
         addFlashcardsViewModel.createFlashcardList()
         _binding = null
+    }
+
+    fun goToNextScreen(){
+        val action = AddFlashcardsFragmentDirections.actionAddFlashcardsFragmentToCreateFlashcardFragment()
+        findNavController().navigate(action)
     }
 
 }

@@ -6,8 +6,8 @@ class CreateFlashcardsDatasourceList {
 
     companion object {
         val flashcardsList = mutableListOf<Flashcard>(
-            Flashcard("", ""),
-            Flashcard("", "")
+            Flashcard(1, "", ""),
+            Flashcard(2, "", "")
         )
     }
 
