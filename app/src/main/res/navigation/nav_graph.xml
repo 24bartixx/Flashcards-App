@@ -40,5 +40,17 @@
         <action
             android:id="@+id/action_createFlashcardFragment_to_addFlashcardsFragment"
             app:destination="@id/addFlashcardsFragment" />
+        <argument
+            android:name="initialTerm"
+            app:argType="string" />
+        <argument
+            android:name="initialDefinition"
+            app:argType="string" />
+        <argument
+            android:name="id"
+            app:argType="integer" />
+        <argument
+            android:name="addOrEdit"
+            app:argType="integer" />
     </fragment>
 </navigation>

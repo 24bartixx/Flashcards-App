@@ -16,10 +16,15 @@
     <string name="add_new_item">Add a new flashcard</string>
 
     <!-- Create flashcard fragment -->
-    <string name="create_flashcard_button_text">Create flashcard</string>
+    <string name="create_flashcard_button_text">Create the flashcard</string>
+    <string name="modify_flashcard_button_text">Modify the flashcard</string>
     <string name="term_text_hint">Term</string>
     <string name="definition_text_hint">Definition</string>
     <string name="enter_flashcard_term_helper_text">Enter the term</string>
     <string name="enter_flashcard_definition_helper_text">Enter the definition</string>
+
+    <!-- what to do options -->
+    <string name="delete_flashcard_option">delete</string>
+    <string name="modify_flashcard_option">modify</string>
 
 </resources>

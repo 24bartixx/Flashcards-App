@@ -9,8 +9,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.flashcards.R
 import com.example.flashcards.adapters.AddFragmentsAdapter
-import com.example.flashcards.data.CreateFlashcardsDatasourceList
 import com.example.flashcards.databinding.FragmentAddFlashcardsBinding
 import com.example.flashcards.viewmodels.AddFlashcardsViewModel
 
@@ -37,19 +37,17 @@ class AddFlashcardsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val flashcardsList = CreateFlashcardsDatasourceList.flashcardsList
-
-        /**
-        Log.d("Dupa", addFlashcardsViewModel.getFlashcardList().size.toString())
-        Log.d("Dupa", addFlashcardsViewModel.getFlashcardList()[0].term.toString())
-        Log.d("Dupa", addFlashcardsViewModel.getFlashcardList()[0].definition.toString())
-        */
-
         recyclerView = binding.addFlashcardsRecyclerView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        val adapter = AddFragmentsAdapter {
-            addFlashcardsViewModel.removeFlashcard(it.id)
+        val adapter = AddFragmentsAdapter { flashcard, whatToDo ->
+            if(whatToDo == getString(R.string.delete_flashcard_option)) {
+                addFlashcardsViewModel.removeFlashcard(flashcard.id)
+            }
+            if(whatToDo == getString(R.string.modify_flashcard_option)){
+                // 1 - add         2 - edit
+                goToNextScreen(flashcard.id, flashcard.term, flashcard.definition, 2)
+            }
         }
         recyclerView.adapter = adapter
 
@@ -59,14 +57,11 @@ class AddFlashcardsFragment : Fragment() {
             }
         }
 
-        /**
-        lifecycle.coroutineScope.launch {
-            adapter.submitList(addFlashcardsViewModel.flashcards.value)
-        }
-        */
-
         binding.addFloatingActionButton.setOnClickListener {
-            goToNextScreen()
+            // 1 - add         2 - edit
+            goToNextScreen(0, "", "", 1)
+
+
         }
 
     }
@@ -77,8 +72,9 @@ class AddFlashcardsFragment : Fragment() {
         _binding = null
     }
 
-    fun goToNextScreen(){
-        val action = AddFlashcardsFragmentDirections.actionAddFlashcardsFragmentToCreateFlashcardFragment()
+    fun goToNextScreen(id: Int, term: String, definition: String, addOrEdit: Int){
+        val action = AddFlashcardsFragmentDirections.actionAddFlashcardsFragmentToCreateFlashcardFragment(id = id,
+            initialTerm = term, initialDefinition = definition, addOrEdit = addOrEdit)
         findNavController().navigate(action)
     }
 

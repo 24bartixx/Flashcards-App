@@ -40,6 +40,18 @@ class AddFlashcardsViewModel: ViewModel() {
         _flashcards.value = list
     }
 
+    fun modifyFlashcard(id: Int, term: String, definition: String) {
+        val list = _flashcards.value!!
+        val iterator = list.listIterator()
+        while(iterator.hasNext()){
+            val flashcard = iterator.next()
+            if(flashcard.id == id){
+                iterator.set(Flashcard(id, term, definition))
+            }
+        }
+        _flashcards.value = list
+    }
+
     fun removeFlashcard(id: Int){
         val list = _flashcards.value!!
         val iterator = list.iterator()

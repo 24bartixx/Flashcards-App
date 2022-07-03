@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import com.example.flashcards.R
 import com.example.flashcards.databinding.FragmentCreateFlashcardBinding
 import com.example.flashcards.viewmodels.AddFlashcardsViewModel
 
@@ -16,6 +18,8 @@ class CreateFlashcardFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val addFlashcardsViewModel: AddFlashcardsViewModel by activityViewModels()
+
+    val args: CreateFlashcardFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +34,11 @@ class CreateFlashcardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         super.onViewCreated(view, savedInstanceState)
+
+        binding.termTextInput.editText?.setText(args.initialTerm)
+        binding.definitionTextInput.editText?.setText(args.initialDefinition)
+
+        if(args.addOrEdit == 2) binding.addFlashcardButton.text = getString(R.string.modify_flashcard_button_text)
 
         binding.addFlashcardButton.setOnClickListener {
 
@@ -52,7 +61,11 @@ class CreateFlashcardFragment : Fragment() {
                 }
 
             }   else    {
-                addFlashcardsViewModel.addFlashCard(term, definition)
+                if (args.addOrEdit == 1) {
+                    addFlashcardsViewModel.addFlashCard(term, definition)
+                } else {
+                    addFlashcardsViewModel.modifyFlashcard(args.id, term, definition)
+                }
                 goToNextScreen()
             }
 
@@ -60,10 +73,6 @@ class CreateFlashcardFragment : Fragment() {
             definition = ""
 
         }
-
-        //if(!addFlashcardsViewModel.flashcards.value.isNullOrEmpty()) Log.d("Dupa", addFlashcardsViewModel.getFlashcardList().size.toString())
-        //Log.d("Dupa", addFlashcardsViewModel.getFlashcardList()[0].term.toString())
-        //Log.d("Dupa", addFlashcardsViewModel.getFlashcardList()[0].definition.toString())
 
     }
 
