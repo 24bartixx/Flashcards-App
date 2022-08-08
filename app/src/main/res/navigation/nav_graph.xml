@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_mainScreenFragment_to_createNameFragment"
             app:destination="@id/createNameFragment" />
+        <action
+            android:id="@+id/action_mainScreenFragment_to_browseColletionsFragment"
+            app:destination="@id/browseColletionsFragment" />
     </fragment>
     <fragment
         android:id="@+id/createNameFragment"
@@ -52,5 +55,45 @@
         <argument
             android:name="addOrEdit"
             app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/browseColletionsFragment"
+        android:name="com.example.flashcards.fragments.BrowseCollectionsFragment"
+        android:label="BrowseColletionsFragment" >
+        <action
+            android:id="@+id/action_browseColletionsFragment_to_createNameFragment"
+            app:destination="@id/createNameFragment" />
+        <action
+            android:id="@+id/action_browseColletionsFragment_to_decideCollectionFragment"
+            app:destination="@id/decideCollectionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/decideCollectionFragment"
+        android:name="com.example.flashcards.fragments.DecideCollectionFragment"
+        android:label="DecideCollectionFragment" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_decideCollectionFragment_to_addFlashcardsFragment"
+            app:destination="@id/addFlashcardsFragment" />
+        <action
+            android:id="@+id/action_decideCollectionFragment_to_whichFlashcardsFragment"
+            app:destination="@id/whichFlashcardsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/whichFlashcardsFragment"
+        android:name="com.example.flashcards.fragments.WhichFlashcardsFragment"
+        android:label="fragment_which_flashcards"
+        tools:layout="@layout/fragment_which_flashcards" >
+        <argument
+            android:name="id"
+            app:argType="integer"/>
+        <argument
+            android:name="option"
+            app:argType="string"/>
     </fragment>
 </navigation>

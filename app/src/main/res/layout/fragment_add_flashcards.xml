@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:contentDescription="@string/add_new_item"
+            android:contentDescription="@string/add_new_flashcard"
             android:src="@android:drawable/ic_input_add"
             app:backgroundTint="@color/primary_color"
             app:fabCustomSize="70dp"
